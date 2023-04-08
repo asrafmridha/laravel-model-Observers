@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Category;
+use Str;
+use Auth;
 
 class CategoryObserver
 {
@@ -11,7 +13,9 @@ class CategoryObserver
      */
     public function created(Category $category): void
     {
-        //
+        $category->slug       = Str::slug($category->name);
+        $category->created_by = Auth::id();
+        $category->save();
     }
 
     /**
