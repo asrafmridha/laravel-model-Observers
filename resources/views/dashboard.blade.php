@@ -37,12 +37,12 @@
                 @foreach ($categories as $row)
                     <tr>
                         <td>{{ $loop->index+1 }}</td>
-                        <td>{{ $row->name }}</td>
-                        <td>{{ $row->slug }}</td>
-                        <td>{{ $row->created_by }}</td>
-                        <td>{{ $row->updated_by }}</td>
-                        <td>{{ $row->created_at }}</td>
-                        <td>{{ $row->updated_at }}</td>
+                        <td>{{ $row->name ?? 'Not Available' }}</td>
+                        <td>{{ $row->slug ?? 'Not Available' }}</td>
+                        <td>{{ $row->user_name->name ?? 'Not Available' }}</td>
+                        <td>{{ $row->updated_by ?? 'Not Available'  }}</td>
+                        <td>{{ $row->created_at ?? 'Not Available'  }}</td>
+                        <td>{{ $row->updated_at ?? 'Not Available'  }}</td>
                         <td><button class="btn brn-primary">Update</button></td>
                     </tr>
                 @endforeach
