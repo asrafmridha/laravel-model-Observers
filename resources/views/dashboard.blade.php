@@ -16,6 +16,9 @@
         </div>
     </div>
     <div class="container  mt-5">
+        @if(Session::has('success'))
+          <p class="alert alert-info">{{ Session::get('success') }}</p>
+        @endif
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">+Add New</button>
         <table class="table table-striped">
             <thead>
@@ -31,8 +34,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr></tr>
-                <tr></tr>
+                @foreach ($categories as $row)
+                    <tr>
+                        <td>{{ $loop->index+1 }}</td>
+                        <td>{{ $row->name }}</td>
+                        <td>{{ $row->slug }}</td>
+                        <td>{{ $row->created_by }}</td>
+                        <td>{{ $row->updated_by }}</td>
+                        <td>{{ $row->created_at }}</td>
+                        <td>{{ $row->updated_at }}</td>
+                        <td><button class="btn brn-primary">Update</button></td>
+                    </tr>
+                @endforeach
+                
             </tbody>
         </table>
     </div>
@@ -48,7 +62,7 @@
                     @csrf
                     <div class="modal-body">
                         <label for="" class="mb-2">Category Name</label>
-                        <input type="text" name="category_name" class="form-control">
+                        <input type="text" name="name" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

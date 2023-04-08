@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon as Carbon;
 
 class CategoryController extends Controller
 {
@@ -11,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('dashboard', compact('categories'));
     }
 
     /**
@@ -27,7 +30,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate(['name' => 'required']);
+        Category::create($request->except('_token') + ['created_at' => Carbon::now()]);
+
+        return to_route('dashboard')->with('success', 'Category Created');
     }
 
     /**
