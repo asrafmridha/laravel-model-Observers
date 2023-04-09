@@ -57,7 +57,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(['name' => 'required']);
+
+        Category::find($id)->update($request->except('_token') + ['update_at' => Carbon::now()]);
+        return to_route('dashboard')->with('success', 'Category Updated');
     }
 
     /**

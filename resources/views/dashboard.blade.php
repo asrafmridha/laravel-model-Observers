@@ -54,6 +54,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{ route('category.update',$row->id) }}" method="POST">
+                                        @method("PUT")
                                         @csrf
                                         <div class="modal-body">
                                             <label for="" class="mb-2">Category Name</label>
