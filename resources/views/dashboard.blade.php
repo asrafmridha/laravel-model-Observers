@@ -43,14 +43,35 @@
                         <td>{{ $row->updated_by ?? 'Not Available'  }}</td>
                         <td>{{ $row->created_at->diffForHumans() ?? 'Not Available'  }}</td>
                         <td>{{ $row->updated_at->diffForHumans() ?? 'Not Available'  }}</td>
-                        <td><button class="btn brn-primary">Update</button></td>
+                        <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#UpdateModal__{{ $row->id }}">Update</button></td>
                     </tr>
+                    <!-- Modal For Update -->
+                        <div class="modal fade" id="UpdateModal__{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Category</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('category.update',$row->id) }}" method="POST">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <label for="" class="mb-2">Category Name</label>
+                                            <input type="text" name="name" class="form-control" value="{{ $row->name }}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                 @endforeach
-                
             </tbody>
         </table>
     </div>
-    <!-- Modal -->
+    <!-- Modal For Create -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -72,6 +93,8 @@
             </div>
         </div>
     </div>
+
+     
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
