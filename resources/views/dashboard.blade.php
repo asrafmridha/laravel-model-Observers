@@ -41,8 +41,8 @@
                         <td>{{ $row->slug ?? 'Not Available' }}</td>
                         <td>{{ $row->user_name->name ?? 'Not Available' }}</td>
                         <td>{{ $row->updated_by ?? 'Not Available'  }}</td>
-                        <td>{{ $row->created_at ?? 'Not Available'  }}</td>
-                        <td>{{ $row->updated_at ?? 'Not Available'  }}</td>
+                        <td>{{ $row->created_at->diffForHumans() ?? 'Not Available'  }}</td>
+                        <td>{{ $row->updated_at->diffForHumans() ?? 'Not Available'  }}</td>
                         <td><button class="btn brn-primary">Update</button></td>
                     </tr>
                 @endforeach
