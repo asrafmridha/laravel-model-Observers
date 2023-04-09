@@ -14,4 +14,8 @@ class Category extends Model
     {
         return $this->belongsTo(User::class, "created_by", "id");
     }
+    public function updater_name()
+    {
+        return $this->belongsTo(User::class, "updated_by", "id");
+    }
 }

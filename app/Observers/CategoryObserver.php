@@ -23,7 +23,8 @@ class CategoryObserver
      */
     public function updated(Category $category): void
     {
-        //
+        $category->updated_by = Auth::id();
+        $category->update();
     }
 
     /**
